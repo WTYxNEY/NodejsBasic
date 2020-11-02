@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+</head>
+
+<body>
+    <%- include layout %>
+    <div class="container">
+        <h2 align="center">เขียนบทความ</h2>
+        <%- messages() %>
+        <% if(locals.errors) { %>
+        <ul class="alert alert-danger">
+            <% Object.values(errors).forEach(function(error) {%>
+            <li><%= error.msg %></li>
+            <% }) %>
+        </ul>
+        <% } %>
+        <form class="" action="/blog/add" method="post">
+            <!--เกิด action หลังกด submit-->
+            <div class="form-group">
+                <label for="">ชื่อบทความ</label>
+                <input type="text" name="name" value="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">รายละเอียด</label>
+                <textarea name="description" id="" cols="80" rows="8" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="">ผู้แต่ง</label>
+                <input type="text" name="author" value="" class="form-control">
+            </div>
+            <input type="submit" name="" value="บันทึก" class="btn btn-primary">
+        </form>
+    </div>
+    <script>
+        $(function(){
+            $('#messages').addClass('alert alert-success');
+        })
+        CKEDITOR.replace('description');
+    </script>
+</body>
+
+</html>
